@@ -45,7 +45,6 @@ export class AppComponent implements OnInit{
     let numberOfClassic = 0;
     let numberOfStandout = 0;
     let numberOfPremium = 0;
-    
     for(let i = 0; i < this.jobAdsArray.length; i++){
       if(this.jobAdsArray[i]['id'] === 'classic'){
         numberOfClassic ++;
