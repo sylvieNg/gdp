@@ -1,3 +1,39 @@
-<h1>
-  {{title}}
-</h1>
+<div>
+    <div>
+      <h4>Can click on the button to add more than one job ads</h4>
+      <form (ngSubmit)="submitForm()">
+          <div [formGroup]="form" class="jobAd">
+              <table>
+                  <thead>
+                      <th data-field="id">Id</th>
+                      <th data-field="name">Name</th>
+                      <th data-field="price">Price</th>
+                      <th data-field="add"> Add</th>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let ads of jobAds">
+                      <td data-field="id">{{ads.id}}</td>
+                      <td data-field="name">{{ads.name}}</td>
+                      <td data-field="price">{{ads.price}}</td>
+                      <td>
+                          <input type="button" value="Add" (click)="addJobAds(ads)">
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+                <h4><label for="customerName">Please enter customer name:</label></h4>
+                <p><input type="text" id="customerName" formControlName="customerName" required></p>
+                <button type="submit">Save</button>
+                <input type="button" value="Reset" (click)="reset()">
+            </div>
+      </form>
+      </div>
+      <div *ngIf="jobAdsArray.length > 0">
+        <h4>Selected product</h4>
+        <div *ngFor="let selected of jobAdsArray; let i=index">
+          Item {{i+1}}: {{selected.name}} {{selected.price}}
+          <input type="button" value="Remove" (click)="removeJobAds(selected, i)">
+        </div>
+      </div>
+      <div *ngIf="totalPrice !== 0"><h4>Total price : {{totalPrice}}</h4></div>
+  </div>
